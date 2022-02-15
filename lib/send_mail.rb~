@@ -1,0 +1,22 @@
+require 'rubygems'
+require 'rest-client'
+
+class SendMail
+
+  def self.send_mail(to,subject,html)
+    response = RestClient.post "http://api.sendcloud.net/apiv2/mail/send",
+    #使用api_user和api_key进行验证
+    :apiUser => 'xuzhaoning_test_uQgpis', 
+    #点击左侧菜单API User,点击生成新的API_KEY
+    :apiKey => '4hBZ7oG2sYqQ2sbk', 
+    #发信人，用正确邮件地址替代
+    :from => "sendcloud@cxSVVBe4BAIvKZwWyHjm4HuvmQld0FRO.sendcloud.org", 
+    :fromName => "SendCloud",
+    #收件人地址，用正确邮件地址替代，多个地址用';'分隔
+    :to => "#{to}",
+    :subject => "#{subject}",
+    :html => "#{html}"
+    return response
+  end
+end
+
